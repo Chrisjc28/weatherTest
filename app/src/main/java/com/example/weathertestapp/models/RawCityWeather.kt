@@ -43,6 +43,12 @@ data class RawCityWeather(
         clouds = this.clouds?.all,
         windInDegrees = this.wind?.deg,
         windSpeed = this.wind?.speed,
+        temp = this.main?.temp,
+        feelsLikeTemp = this.main?.feelsLike,
+        maxTemp = this.main?.tempMax,
+        minTemp = this.main?.tempMin,
+        humidity = this.main?.humidity,
+        weatherDescription = this.weather?.first()?.description,
         favourited = false
     )
 

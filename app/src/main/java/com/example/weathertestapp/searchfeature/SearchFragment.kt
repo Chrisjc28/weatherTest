@@ -6,48 +6,34 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.weathertestapp.R
 import com.example.weathertestapp.adpaters.CityWeatherAdapter
+import com.example.weathertestapp.databinding.FragmentSearchBinding
 import com.example.weathertestapp.state.AppState
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import com.example.weathertestapp.viewmodels.WeatherByCityNameViewModel
-import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val LOG_TAG = SearchFragment::class.java.simpleName
 
 class SearchFragment : Fragment() {
 
-    private val searchBtn by lazy {
-        requireView().findViewById<Button>(R.id.search_btn)
-    }
-
-    private val searchInput by lazy {
-        requireView().findViewById<TextInputEditText>(R.id.edit_text_input)
-    }
-
-    private val cityWeatherRecyclerView by lazy {
-        requireView().findViewById<RecyclerView>(R.id.weather_results)
-    }
-
-    private val cityProgressBar by lazy {
-        requireView().findViewById<ProgressBar>(R.id.city_progress_bar)
-    }
-
     private val weatherByCityNameViewModel: WeatherByCityNameViewModel by viewModel()
-
     private val favouriteCityWeatherViewModel: FavouriteCityWeatherViewModel by viewModel()
+    private val binding get() = _binding!!
+
+    private var _binding: FragmentSearchBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_search, container, false)
+    ): View? {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,8 +47,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun setUpSearchBtn() {
-        searchBtn.setOnClickListener {
-            weatherByCityNameViewModel.fetchWeatherByCity(searchInput.text.toString())
+        binding.searchBtn.setOnClickListener {
+            weatherByCityNameViewModel.fetchWeatherByCity(binding.searchEditTextInput.text.toString())
         }
     }
 
@@ -70,8 +56,8 @@ class SearchFragment : Fragment() {
         weatherByCityNameViewModel.appState.observe(viewLifecycleOwner, Observer { appState ->
             when (appState) {
                 is AppState.Loading -> {
-                    cityProgressBar.visibility = View.VISIBLE
-                    cityWeatherRecyclerView.visibility = View.GONE
+                    binding.cityProgressBar.visibility = View.VISIBLE
+                    binding.cityWeatherRecyclerView.visibility = View.GONE
                     Log.i(LOG_TAG, "Loading")
                 }
                 is AppState.Fail -> {
@@ -79,9 +65,9 @@ class SearchFragment : Fragment() {
                     Log.e(LOG_TAG, appState.error?.localizedMessage ?: "")
                 }
                 is AppState.Success -> {
-                    cityProgressBar.visibility = View.GONE
-                    cityWeatherRecyclerView.visibility = View.VISIBLE
-                    with(cityWeatherRecyclerView) {
+                    binding.cityProgressBar.visibility = View.GONE
+                    binding.cityWeatherRecyclerView.visibility = View.VISIBLE
+                    with(binding.cityWeatherRecyclerView) {
                         adapter = appState.data?.let {
                             CityWeatherAdapter(
                                 listOf(it),

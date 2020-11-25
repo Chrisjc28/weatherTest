@@ -11,10 +11,16 @@ data class CityWeather(
     var country: String? = null,
     var latitude: Double? = null,
     var longitude: Double? = null,
-    var sunrise: Int? = null,
-    var sunset: Int? = null,
+    var sunrise: Long? = null,
+    var sunset: Long? = null,
     var clouds: Int? = null,
     var windInDegrees: Int? = null,
     var windSpeed: Double? = null,
+    var temp: Double? = null,
+    var feelsLikeTemp: Double? = null,
+    var maxTemp: Double? = null,
+    var minTemp: Double? = null,
+    var humidity: Int? = null,
+    var weatherDescription: String? = null,
     var favourited: Boolean? = null
 )
