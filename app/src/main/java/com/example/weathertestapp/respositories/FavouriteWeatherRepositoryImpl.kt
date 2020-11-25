@@ -10,6 +10,8 @@ class FavouriteWeatherRepositoryImpl(
 
     override val allCitiesWeather: Flow<List<CityWeather>> = cityWeatherDao.getAllWeatherListForCities()
 
+    override fun getCityById(id: Int): Flow<CityWeather> = cityWeatherDao.getCityWeatherByIdCities(id)
+
     override suspend fun insertCityWeather(cityWeather: CityWeather) {
         cityWeatherDao.insertCityWeather(cityWeather)
     }

@@ -26,7 +26,7 @@ class WeatherByCityNameViewModelTest {
     fun `fetching city weather from the repository returns a flow of successful App state to observe`() {
         val testContextProvider = TestContextProvider()
         val cityWeather = RawCityWeather()
-        val appState = AppState.Success(cityWeather)
+        val appState = AppState.Success(cityWeather.mapToCityWeather())
 
         testContextProvider.testCoroutineDispatcher.runBlockingTest {
             val rawWeatherRepository: RawWeatherRepository = mock()
@@ -42,7 +42,7 @@ class WeatherByCityNameViewModelTest {
             viewModel.fetchWeatherByCity("Leeds")
 
             assertEquals(
-                AppState.Success(cityWeather),
+                AppState.Success(cityWeather.mapToCityWeather()),
                 viewModel.appState.value
             )
         }

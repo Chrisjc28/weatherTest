@@ -13,6 +13,8 @@ class FavouriteCityWeatherViewModel(private val favouriteWeatherRepository: Favo
 
     val allCitiesWeather: LiveData<List<CityWeather>> = favouriteWeatherRepository.allCitiesWeather.asLiveData()
 
+    fun getCityById(id: Int):  LiveData<CityWeather> = favouriteWeatherRepository.getCityById(id).asLiveData()
+
     fun insert(cityWeather: CityWeather) = viewModelScope.launch {
         favouriteWeatherRepository.insertCityWeather(cityWeather)
     }

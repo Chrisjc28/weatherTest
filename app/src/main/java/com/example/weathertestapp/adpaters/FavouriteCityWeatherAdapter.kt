@@ -1,15 +1,18 @@
 package com.example.weathertestapp.adpaters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weathertestapp.FavouriteDetailActivity
 import com.example.weathertestapp.R
 import com.example.weathertestapp.models.db.CityWeather
 import com.example.weathertestapp.respositories.FavouriteWeatherRepository
 import com.example.weathertestapp.respositories.FavouriteWeatherRepositoryImpl
+import com.example.weathertestapp.utils.Constants
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import kotlinx.android.synthetic.main.recycler_favourites.view.*
 import kotlinx.android.synthetic.main.recycler_item_add_favourite.view.*
@@ -20,6 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+
 
 class FavouriteCityWeatherAdapter(private val cityWeather: List<CityWeather>) : RecyclerView.Adapter<FavouriteCityWeatherAdapter.ViewHolder>() {
 
@@ -50,7 +54,13 @@ class FavouriteCityWeatherAdapter(private val cityWeather: List<CityWeather>) : 
             itemView.latTextView!!.text =  "Latitude: ${cityWeather.latitude}"
             itemView.longTextView!!.text =  "Longitude: ${cityWeather.longitude}"
 
-            if (cityWeather.favourited) {
+            itemView.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context, FavouriteDetailActivity::class.java).apply {
+                    putExtra(Constants.CITY_ID, cityWeather.id)
+                })
+            }
+
+            if (cityWeather.favourited!!) {
                 itemView.favourite_btn.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_filled_in_favorite))
             }
         }

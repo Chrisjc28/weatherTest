@@ -6,15 +6,15 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "city_weather_table")
 data class CityWeather (
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
-    var name: String,
-    var country: String,
-    var latitude: Double,
-    var longitude: Double,
-    var sunrise: Int,
-    var sunset: Int,
-    var clouds: Int,
-    var windInDegrees: Int,
-    var windSpeed: Double,
-    var favourited: Boolean
+    var id: Int? = null,
+    var name: String? = null,
+    var country: String? = null,
+    var latitude: Double? = null,
+    var longitude: Double? = null,
+    var sunrise: Int? = null,
+    var sunset: Int? = null,
+    var clouds: Int? = null,
+    var windInDegrees: Int? = null,
+    var windSpeed: Double? = null,
+    var favourited: Boolean? = null
 )

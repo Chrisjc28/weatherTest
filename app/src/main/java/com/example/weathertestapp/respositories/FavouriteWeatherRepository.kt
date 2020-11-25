@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface FavouriteWeatherRepository {
     suspend fun insertCityWeather(cityWeather: CityWeather)
     val allCitiesWeather: Flow<List<CityWeather>>
+    fun getCityById(id: Int): Flow<CityWeather>
 }

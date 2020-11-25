@@ -28,12 +28,12 @@ class RawWeatherRepositoryImplTest {
     fun `fetching weather by city from WeatherRepository returns an app state of loading and success`() {
         val testContextProvider = TestContextProvider()
         val weatherService = mock<WeatherService>()
-        val cityWeather = RawCityWeather()
+        val rawCityWeather = RawCityWeather()
 
         testContextProvider.testCoroutineDispatcher.runBlockingTest {
 
             weatherService.stub {
-                onBlocking { fetchWeatherByCity("Leeds", "fcf3d44da234c38dfac817a42980dc4e") } doReturn cityWeather
+                onBlocking { fetchWeatherByCity("Leeds", "fcf3d44da234c38dfac817a42980dc4e") } doReturn rawCityWeather
             }
 
             val weatherRepository = RawWeatherRepositoryImpl(
@@ -44,7 +44,7 @@ class RawWeatherRepositoryImplTest {
             val cityWeatherFlow: List<AppState> = weatherRepository.fetchWeatherByCity("Leeds").toList()
 
             assertEquals(
-                listOf(AppState.Loading, AppState.Success(data = cityWeather)),
+                listOf(AppState.Loading, AppState.Success(data = rawCityWeather.mapToCityWeather())),
                 cityWeatherFlow
             )
         }

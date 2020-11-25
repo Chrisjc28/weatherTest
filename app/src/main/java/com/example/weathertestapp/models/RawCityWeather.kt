@@ -33,16 +33,16 @@ data class RawCityWeather(
     val wind: Wind? = null
 ) {
     fun mapToCityWeather() = CityWeather(
-        id = this.id!!,
-        name = this.name!!,
-        country = this.sys!!.country,
-        latitude = this.coord!!.lat,
-        longitude = this.coord.lon,
-        sunrise = this.sys.sunrise,
-        sunset = this.sys.sunset,
-        clouds = this.clouds!!.all,
-        windInDegrees = this.wind!!.deg,
-        windSpeed = this.wind.speed,
+        id = this.id,
+        name = this.name,
+        country = this.sys?.country,
+        latitude = this.coord?.lat,
+        longitude = this.coord?.lon,
+        sunrise = this.sys?.sunrise,
+        sunset = this.sys?.sunset,
+        clouds = this.clouds?.all,
+        windInDegrees = this.wind?.deg,
+        windSpeed = this.wind?.speed,
         favourited = false
     )
 
