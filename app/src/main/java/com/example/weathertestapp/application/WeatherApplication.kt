@@ -19,7 +19,7 @@ import org.koin.dsl.module
 
 class WeatherApplication : Application() {
 
-    private val myModule = module {
+    private val weatherAppModule = module {
         single { CityWeatherDatabase.getDatabase(get()) }
         single { CityWeatherDatabase.getDatabase(get()).cityWeatherDao() }
         single { Network.createService(WeatherService::class.java) }
@@ -35,7 +35,7 @@ class WeatherApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@WeatherApplication)
-            modules(myModule)
+            modules(weatherAppModule)
         }
     }
 }

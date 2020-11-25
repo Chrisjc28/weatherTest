@@ -23,13 +23,10 @@ class FavouriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.activity_favourtie, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.activity_favourtie, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         populateFavouritesCitiesWeather()
     }
 
@@ -44,7 +41,6 @@ class FavouriteFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() =
-            FavouriteFragment()
+        fun newInstance() = FavouriteFragment()
     }
 }

@@ -5,11 +5,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.weathertestapp.R
-import com.example.weathertestapp.utils.Constants
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val LOG_TAG = FavouriteDetailActivity::class.java.simpleName
+const val CITY_ID = "city_id"
 
 class FavouriteDetailActivity : AppCompatActivity() {
 
@@ -21,7 +21,7 @@ class FavouriteDetailActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Detailed city weather"
 
-        val cityId = intent.getIntExtra(Constants.CITY_ID, 0)
+        val cityId = intent.getIntExtra(CITY_ID, 0)
 
         favouriteCityWeatherViewModel.getCityById(cityId).observe(this, Observer {
             Log.e(LOG_TAG, it.toString())

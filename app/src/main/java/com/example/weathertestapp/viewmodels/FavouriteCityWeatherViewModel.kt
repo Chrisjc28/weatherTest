@@ -8,8 +8,7 @@ import com.example.weathertestapp.models.db.CityWeather
 import com.example.weathertestapp.respositories.FavouriteWeatherRepository
 import kotlinx.coroutines.launch
 
-class FavouriteCityWeatherViewModel(private val favouriteWeatherRepository: FavouriteWeatherRepository) :
-    ViewModel() {
+class FavouriteCityWeatherViewModel(private val favouriteWeatherRepository: FavouriteWeatherRepository) : ViewModel() {
 
     val allCitiesWeather: LiveData<List<CityWeather>> =
         favouriteWeatherRepository.allCitiesWeather.asLiveData()
@@ -21,13 +20,3 @@ class FavouriteCityWeatherViewModel(private val favouriteWeatherRepository: Favo
         favouriteWeatherRepository.insertCityWeather(cityWeather)
     }
 }
-
-//class FavouriteCityWeatherViewModelFactory(private val favouriteWeatherRepository: FavouriteWeatherRepository) : ViewModelProvider.Factory {
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        if (modelClass.isAssignableFrom(FavouriteCityWeatherViewModel::class.java)) {
-//            @Suppress("UNCHECKED_CAST")
-//            return FavouriteCityWeatherViewModel(favouriteWeatherRepository) as T
-//        }
-//        throw IllegalArgumentException("Unknown ViewModel class")
-//    }
-//}

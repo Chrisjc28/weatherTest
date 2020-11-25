@@ -39,14 +39,12 @@ class HomeActivity : AppCompatActivity() {
                     R.id.search_btn
             }
         })
-
     }
 
     private fun setUpSearchFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, SearchFragment.newInstance()).commit()
     }
-
 
     private fun setUpFavouriteFragment() {
         supportFragmentManager.beginTransaction()

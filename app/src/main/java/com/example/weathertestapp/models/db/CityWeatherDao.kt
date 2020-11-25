@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CityWeatherDao {
-
     @Query("SELECT * FROM city_weather_table")
     fun getAllWeatherListForCities(): Flow<List<CityWeather>>
 
