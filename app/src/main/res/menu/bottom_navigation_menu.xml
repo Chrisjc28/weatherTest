@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/favourite_btn"
+        android:enabled="true"
+        android:icon="@drawable/ic_filled_in_favorite"
+        android:title="@string/favourites_bottom_nav_item"/>
+    <item
+        android:id="@+id/search_btn"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_bottom_nav_item"/>
+
+</menu>

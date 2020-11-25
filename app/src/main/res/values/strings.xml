@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WeatherTestApp</string>
+    <string name="search_btn_text">search</string>
+    <string name="city_by_name_search_hint">search for cities weather by name</string>
+    <string name="search_bottom_nav_item">search</string>
+    <string name="favourites_bottom_nav_item">Favourites</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
