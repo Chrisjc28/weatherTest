@@ -71,6 +71,14 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
+    implementation "org.koin:koin-android:$koin_version"
+
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+
+    testImplementation "org.koin:koin-test:$koin_version"
+
     implementation "androidx.room:room-runtime:$room_version"
 
     implementation "androidx.room:room-ktx:$room_version"

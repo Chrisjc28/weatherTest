@@ -28,7 +28,7 @@ object Network {
         .client(client)
         .build()
 
-    fun <S> createService(clazz: Class<S>) : S {
+    fun <S> createService(clazz: Class<S>): S {
         return retrofit.create(clazz)
     }
 }

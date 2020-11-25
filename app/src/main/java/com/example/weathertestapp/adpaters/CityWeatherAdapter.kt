@@ -44,7 +44,8 @@ class CityWeatherAdapter(
             this.cityWeather = cityWeather
 
             recyclerItemAddFavouriteBinding.cityNameTextView.text = "City: ${cityWeather.name}"
-            recyclerItemAddFavouriteBinding.countryTextView.text = "Country:  ${cityWeather.country}"
+            recyclerItemAddFavouriteBinding.countryTextView.text =
+                "Country:  ${cityWeather.country}"
         }
 
         fun setUpFavouriteClick() {

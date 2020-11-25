@@ -7,9 +7,15 @@ import retrofit2.http.Query
 interface WeatherService {
 
     @GET("weather")
-    suspend fun fetchWeatherByCity(@Query("q") city: String, @Query("appId") appId: String): RawCityWeather
+    suspend fun fetchWeatherByCity(
+        @Query("q") city: String,
+        @Query("appId") appId: String
+    ): RawCityWeather
 
     @GET("weather")
-    suspend fun fetchWeatherById(@Query("id") cityId: Int, @Query("appId") appId: String): RawCityWeather
+    suspend fun fetchWeatherById(
+        @Query("id") cityId: Int,
+        @Query("appId") appId: String
+    ): RawCityWeather
 
 }

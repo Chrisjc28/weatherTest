@@ -1,13 +1,14 @@
-package com.example.weathertestapp
+package com.example.weathertestapp.home
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.example.weathertestapp.R
+import com.example.weathertestapp.favouritefeature.FavouriteFragment
+import com.example.weathertestapp.searchfeature.SearchFragment
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
-import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val LOG_TAG = HomeActivity::class.java.simpleName
 
@@ -17,10 +18,7 @@ class HomeActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottom_navigation)
     }
 
-    private val favouriteCityWeatherViewModel: FavouriteCityWeatherViewModel by viewModels {
-        FavouriteCityWeatherViewModelFactory((application as WeatherApplication).repository)
-    }
-
+    private val favouriteCityWeatherViewModel: FavouriteCityWeatherViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +31,12 @@ class HomeActivity : AppCompatActivity() {
         favouriteCityWeatherViewModel.allCitiesWeather.observe(this, Observer {
             if (it.isNotEmpty()) {
                 setUpFavouriteFragment()
-                bottomNavigationView.selectedItemId = R.id.favourite_btn
+                bottomNavigationView.selectedItemId =
+                    R.id.favourite_btn
             } else {
                 setUpSearchFragment()
-                bottomNavigationView.selectedItemId = R.id.search_btn
+                bottomNavigationView.selectedItemId =
+                    R.id.search_btn
             }
         })
 

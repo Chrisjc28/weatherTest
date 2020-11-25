@@ -1,4 +1,4 @@
-package com.example.weathertestapp
+package com.example.weathertestapp.searchfeature
 
 import android.content.Context
 import android.os.Bundle
@@ -10,21 +10,15 @@ import android.widget.Button
 import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weathertestapp.R
 import com.example.weathertestapp.adpaters.CityWeatherAdapter
-import com.example.weathertestapp.network.Network
-import com.example.weathertestapp.respositories.RawWeatherRepository
-import com.example.weathertestapp.respositories.RawWeatherRepositoryImpl
-import com.example.weathertestapp.services.WeatherService
 import com.example.weathertestapp.state.AppState
-import com.example.weathertestapp.utils.CoroutineContextProvider
-import com.example.weathertestapp.utils.CoroutineContextProviderImpl
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
-import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModelFactory
 import com.example.weathertestapp.viewmodels.WeatherByCityNameViewModel
 import com.google.android.material.textfield.TextInputEditText
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val LOG_TAG = SearchFragment::class.java.simpleName
 
@@ -46,18 +40,9 @@ class SearchFragment : Fragment() {
         requireView().findViewById<ProgressBar>(R.id.city_progress_bar)
     }
 
-    private val coroutineContextProviderImpl: CoroutineContextProvider = CoroutineContextProviderImpl()
+    private val weatherByCityNameViewModel: WeatherByCityNameViewModel by viewModel()
 
-    private val weatherService: WeatherService = Network.createService(WeatherService::class.java)
-
-    private val rawWeatherRepository: RawWeatherRepository = RawWeatherRepositoryImpl(weatherService, coroutineContextProviderImpl)
-
-    private val weatherByCityNameViewModel: WeatherByCityNameViewModel = WeatherByCityNameViewModel(rawWeatherRepository,coroutineContextProviderImpl)
-
-    private val favouriteCityWeatherViewModel: FavouriteCityWeatherViewModel by viewModels {
-        FavouriteCityWeatherViewModelFactory((requireActivity().application as WeatherApplication).repository)
-    }
-
+    private val favouriteCityWeatherViewModel: FavouriteCityWeatherViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +58,8 @@ class SearchFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = SearchFragment()
+        fun newInstance() =
+            SearchFragment()
     }
 
     private fun setUpSearchBtn() {
@@ -111,7 +97,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun showErrorDialog(context: Context): AlertDialog? {
-        return  AlertDialog.Builder(context)
+        return AlertDialog.Builder(context)
             .setTitle("Error fetching weather information")
             .setMessage("It seems you have entered an incorrect city, please try again") // Specifying a listener allows you to take an action before dismissing the dialog.
             .setNegativeButton("Close", null)

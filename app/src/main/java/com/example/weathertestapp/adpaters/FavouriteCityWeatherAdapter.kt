@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weathertestapp.FavouriteDetailActivity
 import com.example.weathertestapp.R
 import com.example.weathertestapp.databinding.RecyclerFavouritesBinding
+import com.example.weathertestapp.favouritefeature.FavouriteDetailActivity
 import com.example.weathertestapp.models.db.CityWeather
 import com.example.weathertestapp.utils.Constants
 
@@ -30,7 +30,7 @@ class FavouriteCityWeatherAdapter(private val cityWeather: List<CityWeather>) :
         holder.updateContent(weatherCity)
     }
 
-    override fun getItemCount()= cityWeather.size
+    override fun getItemCount() = cityWeather.size
 
     inner class ViewHolder(private val recyclerFavouritesBinding: RecyclerFavouritesBinding) :
         RecyclerView.ViewHolder(recyclerFavouritesBinding.root) {
