@@ -1,7 +1,10 @@
 package com.example.weathertestapp.favouritefeature
 
 import android.os.Bundle
-import android.util.Log
+import android.view.animation.AnimationSet
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.RotateAnimation
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.weathertestapp.R
@@ -11,6 +14,7 @@ import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 private val LOG_TAG = FavouriteDetailActivity::class.java.simpleName
 const val CITY_ID = "city_id"
@@ -106,12 +110,34 @@ class FavouriteDetailActivity : AppCompatActivity() {
     }
 
     private fun setUpWindInDegrees(it: CityWeather) {
+        animateWindDirectionArrow(binding.windInDegressImageView, it.windInDegrees!!.toFloat())
         binding.moreDetailWindInDegreesTextView.text =
             resources.getString(
                 R.string.wind_in_degrees_text,
                 it.windInDegrees.toString()
             )
     }
+
+    private fun animateWindDirectionArrow(windDirectionImageView: ImageView, windDegrees: Float) {
+        val animRotate = RotateAnimation(
+            0.0f, windDegrees,
+            RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+            RotateAnimation.RELATIVE_TO_SELF, 0.5f
+        ).apply {
+            duration = 1000
+            fillAfter = true
+        }
+
+        val animSet = AnimationSet(true).apply {
+            interpolator = DecelerateInterpolator()
+            fillAfter = true
+            isFillEnabled = true
+            addAnimation(animRotate)
+        }
+
+        windDirectionImageView.startAnimation(animSet)
+    }
+
 
     private fun setUpSunSet(it: CityWeather) {
         val sunSetString = convertLongToTime(it.sunset!!)
