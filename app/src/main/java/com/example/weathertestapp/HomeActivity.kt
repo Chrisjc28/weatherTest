@@ -3,7 +3,6 @@ package com.example.weathertestapp
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModelFactory

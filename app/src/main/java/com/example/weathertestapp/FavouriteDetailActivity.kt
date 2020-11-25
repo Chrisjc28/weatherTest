@@ -1,10 +1,9 @@
 package com.example.weathertestapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.weathertestapp.utils.Constants
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel

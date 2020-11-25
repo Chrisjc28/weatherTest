@@ -72,8 +72,6 @@ class WeatherByCityNameViewModelTest {
                 AppState.Fail(NullPointerException()).error,
                 CoreMatchers.instanceOf<Any>(NullPointerException::class.java)
             )
-
-
         }
     }
 }
