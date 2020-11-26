@@ -141,7 +141,7 @@ class FavouriteDetailActivity : AppCompatActivity() {
 
 
     private fun setUpSunSet(it: CityWeather) {
-        val sunSetString = DateUtils.convertSecondsInToADate(it.sunset)
+        val sunSetString = DateUtils.convertSecondsInToAFormattedDate(it.sunset)
 
         binding.moreDetailSunsetTextView.text =
             resources.getString(
@@ -151,7 +151,7 @@ class FavouriteDetailActivity : AppCompatActivity() {
     }
 
     private fun setUpSunRise(it: CityWeather) {
-        val sunRiseString = DateUtils.convertSecondsInToADate(it.sunrise)
+        val sunRiseString = DateUtils.convertSecondsInToAFormattedDate(it.sunrise)
 
         binding.moreDetailSunriseTextView.text =
             resources.getString(
