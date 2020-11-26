@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.example.weathertestapp.R
 import com.example.weathertestapp.databinding.ActivityFavouriteDetailBinding
 import com.example.weathertestapp.models.db.CityWeather
+import com.example.weathertestapp.utils.DateUtils
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -140,7 +141,7 @@ class FavouriteDetailActivity : AppCompatActivity() {
 
 
     private fun setUpSunSet(it: CityWeather) {
-        val sunSetString = convertLongToTime(it.sunset!!)
+        val sunSetString = DateUtils.convertSecondsInToADate(it.sunset)
 
         binding.moreDetailSunsetTextView.text =
             resources.getString(
@@ -150,7 +151,7 @@ class FavouriteDetailActivity : AppCompatActivity() {
     }
 
     private fun setUpSunRise(it: CityWeather) {
-        val sunRiseString = convertLongToTime(it.sunrise!!)
+        val sunRiseString = DateUtils.convertSecondsInToADate(it.sunrise)
 
         binding.moreDetailSunriseTextView.text =
             resources.getString(
@@ -181,11 +182,5 @@ class FavouriteDetailActivity : AppCompatActivity() {
     private fun setUpCityName(it: CityWeather) {
         binding.moreDetailCityNameTextView.text =
             resources.getString(R.string.city_name_text, it.name)
-    }
-
-    private fun convertLongToTime(time: Long): String {
-        val date = Date(time * 1000)
-        val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.UK)
-        return format.format(date)
     }
 }
