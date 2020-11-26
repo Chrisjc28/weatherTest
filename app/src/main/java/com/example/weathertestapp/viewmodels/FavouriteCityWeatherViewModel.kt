@@ -8,7 +8,8 @@ import com.example.weathertestapp.models.db.CityWeather
 import com.example.weathertestapp.respositories.FavouriteWeatherRepository
 import kotlinx.coroutines.launch
 
-class FavouriteCityWeatherViewModel(private val favouriteWeatherRepository: FavouriteWeatherRepository) : ViewModel() {
+class FavouriteCityWeatherViewModel(private val favouriteWeatherRepository: FavouriteWeatherRepository) :
+    ViewModel() {
 
     val allCitiesWeather: LiveData<List<CityWeather>> =
         favouriteWeatherRepository.allCitiesWeather.asLiveData()

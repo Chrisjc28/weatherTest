@@ -183,7 +183,7 @@ class FavouriteDetailActivity : AppCompatActivity() {
             resources.getString(R.string.city_name_text, it.name)
     }
 
-   private fun convertLongToTime(time: Long): String {
+    private fun convertLongToTime(time: Long): String {
         val date = Date(time * 1000)
         val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.UK)
         return format.format(date)
