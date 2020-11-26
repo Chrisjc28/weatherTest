@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import com.example.weathertestapp.R
 import com.example.weathertestapp.adpaters.CityWeatherAdapter
 import com.example.weathertestapp.databinding.FragmentSearchBinding
+import com.example.weathertestapp.extension.hideKeyboard
 import com.example.weathertestapp.state.AppState
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
 import com.example.weathertestapp.viewmodels.WeatherByCityNameViewModel
@@ -48,6 +49,7 @@ class SearchFragment : Fragment() {
 
     private fun setUpSearchBtn() {
         binding.searchBtn.setOnClickListener {
+            requireContext().hideKeyboard(it)
             weatherByCityNameViewModel.fetchWeatherByCity(binding.searchEditTextInput.text.toString())
         }
     }
