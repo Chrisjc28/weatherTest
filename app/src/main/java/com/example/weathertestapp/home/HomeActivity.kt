@@ -1,44 +1,60 @@
 package com.example.weathertestapp.home
 
 import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.weathertestapp.R
+import com.example.weathertestapp.databinding.ActivityHomeBinding
 import com.example.weathertestapp.favouritefeature.FavouriteFragment
 import com.example.weathertestapp.searchfeature.SearchFragment
 import com.example.weathertestapp.viewmodels.FavouriteCityWeatherViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 private val LOG_TAG = HomeActivity::class.java.simpleName
 
 class HomeActivity : AppCompatActivity() {
 
-    private val bottomNavigationView: BottomNavigationView by lazy {
-        findViewById<BottomNavigationView>(R.id.bottom_navigation)
-    }
-
     private val favouriteCityWeatherViewModel: FavouriteCityWeatherViewModel by viewModel()
+
+    private lateinit var binding: ActivityHomeBinding
+
+    @IdRes
+    private var savedState: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         supportActionBar?.title = "Home screen"
 
         setUpBottomNav()
 
-        favouriteCityWeatherViewModel.allCitiesWeather.observe(this, Observer {
-            if (it.isNotEmpty()) {
-                setUpFavouriteFragment()
-                bottomNavigationView.selectedItemId =
-                    R.id.favourite_btn
-            } else {
-                setUpSearchFragment()
-                bottomNavigationView.selectedItemId =
-                    R.id.search_btn
-            }
-        })
+        if (savedInstanceState != null) {
+            binding.bottomNavigation.selectedItemId = savedState
+        } else {
+            favouriteCityWeatherViewModel.allCitiesWeather.observe(this, Observer {
+                if (it.isNotEmpty()) {
+                    setUpFavouriteFragment()
+                } else {
+                    setUpSearchFragment()
+                }
+            })
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bottomNavigation.selectedItemId = savedState
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        savedState = binding.bottomNavigation.selectedItemId
     }
 
     private fun setUpSearchFragment() {
@@ -52,7 +68,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setUpBottomNav() {
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.search_btn -> {
                     supportFragmentManager.beginTransaction()
