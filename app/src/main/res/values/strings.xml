@@ -10,9 +10,9 @@
     <string name="longitude_text">Countries Longitude is - %1f</string>
     <string name="sunrise_text">Sunrise will be at - %1s</string>
     <string name="sunset_text">Sunset will be at - %1s</string>
-    <string name="wind_in_degrees_text">Wind in degrees is - %1s</string>
-    <string name="wind_speed_text">Wind speed is - %1s mph</string>
-    <string name="temp_text">Temperature is - %.1f°C</string>
+    <string name="wind_in_degrees_text">The wind in degrees is - %1s</string>
+    <string name="wind_speed_text">The wind speed is - %1s mph</string>
+    <string name="temp_text">The temperature is - %.1f°C</string>
     <string name="feels_like_temp_text">What the temperature feels like - %.1f°C</string>
     <string name="max_temp_text">Max temperature: %.1f°C</string>
     <string name="min_temp_text">Min temperature: %.1f°C</string>
