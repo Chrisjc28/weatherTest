@@ -45,6 +45,8 @@ class HomeActivity : AppCompatActivity() {
                 }
             })
         }
+
+        Log.i("CHRIS", "TEST")
     }
 
     override fun onResume() {
