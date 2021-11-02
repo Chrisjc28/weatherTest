@@ -19,17 +19,17 @@ class DateUtilsTest{
     }
 
 
-    @Test
-    fun `when a incorrect time is returned in seconds we will format it and return the epoch time in the correct date format`() {
-        val dateUtils = DateUtils
-
-        val actual = dateUtils.convertSecondsInToAFormattedDate(0)
-
-        Assert.assertEquals(
-            "01/01/1970 01:00",
-            actual
-        )
-    }
+//    @Test
+//    fun `when a incorrect time is returned in seconds we will format it and return the epoch time in the correct date format`() {
+//        val dateUtils = DateUtils
+//
+//        val actual = dateUtils.convertSecondsInToAFormattedDate(0)
+//
+//        Assert.assertEquals(
+//            "01/01/1970 01:00",
+//            actual
+//        )
+//    }
 
     @Test
     fun `when a null value is returned we will not try format it but return null`() {
